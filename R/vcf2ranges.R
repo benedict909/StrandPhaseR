@@ -26,11 +26,11 @@ vcf2ranges <- function(vcfFile=NULL, genotypeField=1, chromosome=NULL) {
   alt.len <- sapply(vcf$V5, nchar, USE.NAMES = F)
   vcf <- vcf[ref.len == 1 & alt.len == 1,]
   
-  column <- genotypeField + 9
-  vcf <- vcf[,c(1:9, column)]
+#   column <- genotypeField + 9
+#   vcf <- vcf[,c(1:9, column)]
 
   #gen.block <- strsplit(as.character(vcf[,10]),':')
-  gen.block <- lapply(as.character(vcf[,10]), function(x) strsplit(x,':')[[1]][1])
+  gen.block <- lapply(as.character(vcf[,8]), function(x) strsplit(x,':')[[1]][1])
   gen.block <- do.call(rbind, gen.block)
   alleles <- strsplit(gen.block,"\\/|\\|")
   alleles <- do.call(rbind, alleles)
