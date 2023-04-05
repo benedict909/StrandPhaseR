@@ -126,7 +126,7 @@ strandPhaseR <- function(inputfolder, outputfolder='./StrandPhaseR_analysis', co
     doParallel::registerDoParallel(cl)
   
     message("Phasing chromosomes ...", appendLF=F); ptm <- proc.time()
-    temp <- foreach (chr = conf[['chromosomes']], .packages=c('StrandPhaseR')) %dopar% {
+    temp <- foreach (chr = conf[['chromosomes']], .packages=c('StrandPhaseR','parallel', 'doParallel')) %dopar% {
       chr <- as.character(chr)
     
       #Select chromosome of interest from the list
